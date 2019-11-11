@@ -6,3 +6,57 @@ html, body, #mapid {
 	height: 100%;
 	width: 100vw;
 }
+
+input {
+  margin: 5px 0;
+}
+
+textarea {
+  margin: 5px 0;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h2 {
+  margin: .5rem 0;
+}
+
+
+.leaflet-popup-content-wrapper {
+}
+
+.leaflet-popup-content p {
+}
+
+.button {
+  border: 1px solid #7fffd473;
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  background: #7fffd473;
+  cursor: pointer;
+  padding: 12px 30px;
+  margin: 5px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.button:hover {
+  background: #7fffd4;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+.button:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s;
+}

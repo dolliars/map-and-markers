@@ -46,11 +46,11 @@ function submitImage(popup) {
 function onMapClick(e) {
   const popup = L.popup();
   popup.setLatLng(e.latlng);
-  popup.setContent(`Add an image <br>
+  popup.setContent(`<h2>Add an image</h2>
     <input type="file" accept="image/*"/>
-    <br><textarea placehodler="describe it.. or not whatever"></textarea>
+    <textarea rows="4" maxlength="152" placeholder="add a description"></textarea>
     <br>
-    <button>don't do it</button>`);
+    <button class="button">Submit</button>`);
   popup.openOn(map);
   
   const button = document.querySelector('button');
