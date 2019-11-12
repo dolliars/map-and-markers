@@ -1,14 +1,7 @@
-var map = L.map('mapid').setView([45.5017, -73.5673], 15);
+// map is set in a config file
+// that contains access token
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-  maxZoom: 18,
-  id: 'mapbox.streets',
-  accessToken: 'pk.eyJ1IjoiZG9sbGlhcnMiLCJhIjoiY2syYXBhc2owNGF3bzNkbXQ1N3NoNnc2eSJ9.-Kjht58fgFxz81TAqI6khw'
-}).addTo(map);
-
-//map.locate({setView: true, maxZoom: 16});
-
+// find location
 function onLocationFound(e) {
 	var radius = e.accuracy;
 
@@ -18,19 +11,19 @@ function onLocationFound(e) {
 	L.circle(e.latlng, radius).addTo(map);
 }
 
-map.on('locationfound', onLocationFound);
-
 function onLocationError(e) {
 	alert(e.message);
 }
 
+map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
+//map.locate({setView: true, maxZoom: 16});
+
 
 var marker = L.marker([ 45.5017, -73.5673]).addTo(map);
+marker.bindPopup("<b>Hello!</b><br>Click an area of the map to add an image.").openPopup();
 
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-
-function submitImage(popup) {
+function addImage(popup) {
   const fileInput = document.querySelector('input');
   const fileObject = fileInput.files[0];
   const path = URL.createObjectURL(fileObject); // is a string
@@ -41,6 +34,10 @@ function submitImage(popup) {
   const imgHTML = `<img src="${path}" />`;
   const textHTML = `<p>${text}</p>`;
   popup.setContent(imgHTML + textHTML);
+}
+
+function addPin(e) {
+	L.marker(e.latlng).addTo(map)
 }
 
 function onMapClick(e) {
@@ -55,9 +52,13 @@ function onMapClick(e) {
   
   const button = document.querySelector('button');
   button.addEventListener('click', (event) => {
-    submitImage(popup)
+    addImage(popup)
   })
 }
 
+
 map.on('click', onMapClick)
+//map.on('click', addPin)
+
+//marker.bindPopup(popupContent).openPopup();
 
