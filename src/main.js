@@ -15,22 +15,16 @@ function addImage(popup) {
 function addPop(e){
   const popup = L.popup();
   popup.setLatLng(e.latlng);
-  popup.setContent(`<input type="file" accept="image/*"/><textarea></textarea><button class="button">Submit</button>`);
+  popup.setContent(`<input type="file" accept="image/*"/><textarea rows="4" maxlength="152" placeholder="add a description"></textarea><button class="button">Submit</button>`);
   popup.openOn(map);
-  
-  const button = document.querySelector('button');
-  button.addEventListener('click', (event) => {
-    addImage(popup)
-  })
+  return popup
 }
 
 function addPin(e) {
-  var marker = L.marker(e.latlng).addTo(map)
-  marker.bindPopup(addPop(e)).openPopup();
-  console.log('done?')
+  const marker = L.marker(e.latlng).addTo(map)
+  marker.bindPopup(addPop(e))
+  marker.openPopup()
 }
 
 map.on('click', addPin)
-
-
 
